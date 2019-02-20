@@ -1,0 +1,7 @@
+pylint==2.2.2
+pytest==3.7.4
+termcolor==1.1.0
+coverage==4.5.1
+py==1.5.3
+ipykernel==5.1.0
+jupyterlab==0.35.4
