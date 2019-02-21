@@ -22,3 +22,16 @@ def read_dataset_from_zip():
         dataset = pd.read_excel(file)
     dataset.to_pickle("data/interim/ut_players.p")
     return dataset
+
+
+def process_dataset():
+    dataset = pd.read_pickle(
+        "data/interim/ut_players.p").sort_values(["base_id", "player_id"])
+    dataset["metal"] = dataset["quality"]\
+        .str.split(" - ").apply(lambda x: x[0])
+    dataset["is_rare"] = dataset["quality"]\
+        .str.split(" - ").apply(lambda x: len(x) == 2)
+    dataset["price"] = dataset["ps4_last"]
+    dataset = dataset.set_index("player_id")
+    dataset.to_pickle("data/processed/ut_players.p")
+    return dataset

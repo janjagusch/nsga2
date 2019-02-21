@@ -26,6 +26,7 @@ setup(name=__project__,
           'numpy==1.16.1',
           'pandas==0.24.1',
           'xlrd==1.2.0',
-          'kaggle==1.5.3'
+          'kaggle==1.5.3',
+          'flask==1.0.2'
       ],
       zip_safe=False)
