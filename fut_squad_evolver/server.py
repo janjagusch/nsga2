@@ -57,15 +57,39 @@ def home():
 
 @app.route("/player_long/<player_id>")
 def get_player_long(player_id):
+    player_id = int(player_id)
     player = player_api.get_player_long(player_id)
-    response = make_response(player, 200)
+    response = make_response(player.to_json(), 200)
     return response
 
 
 @app.route("/player_short/<player_id>")
 def get_player_short(player_id):
+    player_id = int(player_id)
     player = player_api.get_player_short(player_id)
-    response = make_response(player, 200)
+    response = make_response(player.to_json(), 200)
+    return response
+
+
+@app.route("/base/<base_id>")
+def get_base(base_id):
+    base_id = int(base_id)
+    base = player_api.get_base(base_id)
+    response = make_response(base.to_json(), 200)
+    return response
+
+
+@app.route("/formation_ids")
+def get_formation_ids():
+    formation_ids = player_api.get_formation_ids()
+    response = make_response(json.dumps(formation_ids), 200)
+    return response
+
+
+@app.route("/formation/<formation_id>")
+def get_formation(formation_id):
+    formation = player_api.get_formation(formation_id)
+    response = make_response(json.dumps(formation), 200)
     return response
 
 

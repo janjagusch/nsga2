@@ -177,6 +177,59 @@ var chem3_positions = {
     CB: '("CB")',
     GK: '("GK")'
 };
+var switch_pos = {
+    GK: {
+        change: allpositions[0]
+    },
+    RB: {
+        change: [allpositions[4], allpositions[5]]
+    },
+    RWB: {
+        change: [allpositions[4], allpositions[5]]
+    },
+    LB: {
+        change: [allpositions[2], allpositions[3]]
+    },
+    LWB: {
+        change: [allpositions[2], allpositions[3]]
+    },
+    CB: {
+        change: allpositions[1]
+    },
+    RW: {
+        change: [allpositions[14], allpositions[15], allpositions[16]]
+    },
+    RF: {
+        change: [allpositions[14], allpositions[15], allpositions[16]]
+    },
+    RM: {
+        change: [allpositions[14], allpositions[15], allpositions[16]]
+    },
+    LW: {
+        change: [allpositions[11], allpositions[12], allpositions[13]]
+    },
+    LF: {
+        change: [allpositions[11], allpositions[12], allpositions[13]]
+    },
+    LM: {
+        change: [allpositions[11], allpositions[12], allpositions[13]]
+    },
+    CDM: {
+        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
+    },
+    CM: {
+        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
+    },
+    CAM: {
+        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
+    },
+    CF: {
+        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
+    },
+    ST: {
+        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
+    }
+};
 var chem0_positions = {
     ST: '("LF", "LW", "LM", "RF", "RW", "RM")',
     CF: '("LF", "LW", "LM", "RF", "RW", "RM")',
@@ -614,59 +667,7 @@ var loc532 = {
     RWB: 10,
     GK: 11
 };
-var switch_pos = {
-    GK: {
-        change: allpositions[0]
-    },
-    RB: {
-        change: [allpositions[4], allpositions[5]]
-    },
-    RWB: {
-        change: [allpositions[4], allpositions[5]]
-    },
-    LB: {
-        change: [allpositions[2], allpositions[3]]
-    },
-    LWB: {
-        change: [allpositions[2], allpositions[3]]
-    },
-    CB: {
-        change: allpositions[1]
-    },
-    RW: {
-        change: [allpositions[14], allpositions[15], allpositions[16]]
-    },
-    RF: {
-        change: [allpositions[14], allpositions[15], allpositions[16]]
-    },
-    RM: {
-        change: [allpositions[14], allpositions[15], allpositions[16]]
-    },
-    LW: {
-        change: [allpositions[11], allpositions[12], allpositions[13]]
-    },
-    LF: {
-        change: [allpositions[11], allpositions[12], allpositions[13]]
-    },
-    LM: {
-        change: [allpositions[11], allpositions[12], allpositions[13]]
-    },
-    CDM: {
-        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
-    },
-    CM: {
-        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
-    },
-    CAM: {
-        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
-    },
-    CF: {
-        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
-    },
-    ST: {
-        change: [allpositions[6], allpositions[7], allpositions[8], allpositions[9], allpositions[10]]
-    }
-};
+
 var formation_draw = {
     3412: {
         draw: {
@@ -1119,6 +1120,9 @@ var formation_draw = {
         }
     }
 };
+
+
+
 function AvgDes(avg) {
     switch (true) {
     case avg < 50:

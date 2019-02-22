@@ -32,6 +32,6 @@ def process_dataset():
     dataset["is_rare"] = dataset["quality"]\
         .str.split(" - ").apply(lambda x: len(x) == 2)
     dataset["price"] = dataset["ps4_last"]
-    dataset = dataset.set_index("player_id")
+    dataset = dataset.set_index("player_id", drop=False)
     dataset.to_pickle("data/processed/ut_players.p")
     return dataset
