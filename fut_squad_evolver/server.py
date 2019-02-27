@@ -82,6 +82,7 @@ def get_base(base_id):
 @app.route("/formation_ids")
 def get_formation_ids():
     formation_ids = player_api.get_formation_ids()
+    formation_ids = {"formation_ids": formation_ids}
     response = make_response(json.dumps(formation_ids), 200)
     return response
 
@@ -89,6 +90,7 @@ def get_formation_ids():
 @app.route("/formation/<formation_id>")
 def get_formation(formation_id):
     formation = player_api.get_formation(formation_id)
+    formation = {"formation": formation}
     response = make_response(json.dumps(formation), 200)
     return response
 
