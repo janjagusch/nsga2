@@ -9,10 +9,7 @@ POSITIONS = ["GK", "CB", "LB", "LWB", "RB", "RWB", "CDM",
              "CM", "CAM", "CF", "ST", "LM", "LW", "LF", "RM", "RW", "RF"]
 
 
-def make_compatible_players(players, min_compatibility):
-    compatible_positions = {position: [other_position for other_position in POSITIONS
-                                       if calculate_chemistry_position(
-                                           position, other_position) >= 2] for position in ALL_POSITIONS}
+
 
 
 COMPATIBLE_PLAYERS = {position: PLAYERS[PLAYERS["position"].isin(
