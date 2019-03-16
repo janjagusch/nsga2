@@ -280,3 +280,9 @@ def calculate_chemistry(link_chemistry, position_chemistry):
     print(link_chemistry)
     print(position_chemistry)
     raise ValueError
+
+
+def make_compatible_players(players, min_compatibility):
+    compatible_positions = {position: [other_position for other_position in POSITIONS
+                                       if calculate_chemistry_position(
+                                           position, other_position) >= 2] for position in ALL_POSITIONS}
