@@ -1,3 +1,6 @@
+from fut_squad_evolver.fut_elements.data_loader import POSITIONS
+
+
 def calculate_chemistry_position(player_pos, squad_pos):
     """
     Calculates the position chemistry points between a player's preferred
@@ -216,11 +219,11 @@ def calculate_chemistry_position(player_pos, squad_pos):
 
 def calculate_inter_player_chemistry(player_1, player_2):
     inter_player_chemistry = 0
-    if player_1["club"] == player_2["club"]:
+    if player_1.club == player_2.club:
         inter_player_chemistry += 1
-    if player_1["league"] == player_2["league"]:
+    if player_1.league == player_2.league:
         inter_player_chemistry += 1
-    if player_1["nationality"] == player_2["nationality"]:
+    if player_1.nationality == player_2.nationality:
         inter_player_chemistry += 1
     return inter_player_chemistry
 
@@ -282,7 +285,17 @@ def calculate_chemistry(link_chemistry, position_chemistry):
     raise ValueError
 
 
+def get_compatible_positions(min_compatibility):
+    compatible_positions = {
+        position: [
+            other_position for other_position in POSITIONS
+            if calculate_chemistry_position(position, other_position) >= 2]
+        for position in POSITIONS}
+    return compatible_positions
+
+
 def make_compatible_players(players, min_compatibility):
-    compatible_positions = {position: [other_position for other_position in POSITIONS
-                                       if calculate_chemistry_position(
-                                           position, other_position) >= 2] for position in ALL_POSITIONS}
+    compatible_positions = get_compatible_positions(min_compatibility)
+    compatible_players =  {key: players[players["position"].isin(value)]
+                        for key, value in compatible_positions.items()}
+    return compatible_players

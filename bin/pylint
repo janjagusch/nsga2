@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+find jobcategorizer -name "*.py" -print0 \
+     | xargs -0 pylint \
+                --output-format=colorized \
+                --unsafe-load-any-extension=y \
+                --suggestion-mode=y \
+                --score=y \
+                --init-hook="import sys; sys.setrecursionlimit(2000)" \
+     2>&1 \
+     | tee pylint.log

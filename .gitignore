@@ -109,3 +109,4 @@ input/*
 
 # Ignore data folder
 data/
+trash/

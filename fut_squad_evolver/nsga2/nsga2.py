@@ -1,5 +1,5 @@
 class NSGA2:
 
-    def __init__(self, stopper_id, stopper_kwargs=None):
+    def __init__(self, initializer, evaluator):
         if stopper_kwargs = None:
             stopper_kwargs = {}
