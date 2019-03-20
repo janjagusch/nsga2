@@ -12,11 +12,14 @@ class Evaluator:
         """
         Fills the fitness attribute of each element in the population (inplace).
         """
-        pareto_fronts = self.non_dominated_sorter.sort(population)
+        phenotypes = {individual_id: individual.phenotype for individual_id, individual in population.items()}
+        pareto_front_ids = self.non_dominated_sorter.sort(phenotypes)
+        pareto_fronts = [{individual_id: phenotypes[individual_id] for individual_id in front} for front in pareto_front_ids]
         crowding_distance_fronts = self.crowding_distance_sorter.sort(pareto_fronts)
-        for front_level, front in enumerate(pareto_fronts):
-            for indiviual_id, individual in front.items():
-                indiviual.fitness = {}
-                indiviual.fitness["pareto_front"] = front_level
-                individual.fitness["crowding_distance"] = crowding_distance_fronts[front_level][indiviual_id]
+        for front_level, front in enumerate(crowding_distance_fronts):
+            for individual_id, crowding_distance in front.items():
+                individual = population[individual_id]
+                individual.fitness = {}
+                individual.fitness["pareto_front"] = front_level
+                individual.fitness["crowding_distance"] = crowding_distance
         return population

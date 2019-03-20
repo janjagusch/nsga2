@@ -34,7 +34,7 @@ def test_front_sort():
 
 
 def test_sort():
-    phenotypes = [
+    pareto_fronts = [
         {
             0: {0: 0, 1: 10},
             1: {0: 1, 1: 8},
@@ -49,14 +49,6 @@ def test_sort():
             8: {0: 3, 1: 1}
         }
     ]
-    pareto_fronts = []
-    for phenotype_front in phenotypes:
-        front = {}
-        for key, value in phenotype_front.items():
-            indiviual = Individual(None, indiviual_id=key)
-            indiviual.phenotype = value
-            front[indiviual.indiviual_id] = indiviual
-        pareto_fronts.append(front)
     greater_is_better_dict = {
         0: True,
         1: True

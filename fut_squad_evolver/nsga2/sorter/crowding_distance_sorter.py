@@ -22,7 +22,7 @@ class CrowdingDistanceSorter:
         for dim_key, min_max in min_max_dict.items():
             max_value = min_max["max"]
             min_value = min_max["min"]
-            values = {obs_key: obs_val.phenotype[dim_key] for obs_key, obs_val in front.items()}
+            values = {obs_key: obs_val[dim_key] for obs_key, obs_val in front.items()}
             temp_cd = self._calculate_crowding_distance(values, max_value, min_value)
             for cd_key, cd_val in temp_cd.items():
                 crowding_distance[cd_key] += cd_val
@@ -32,6 +32,6 @@ class CrowdingDistanceSorter:
         min_max_dict = {}
         for key in self.greater_is_better_dict.keys():
             min_max_dict[key] = {}
-            min_max_dict[key]["min"] = np.min([indiviual.phenotype[key] for front in pareto_fronts for indiviual in front.values()])
-            min_max_dict[key]["max"] = np.max([indiviual.phenotype[key] for front in pareto_fronts for indiviual in front.values()])
+            min_max_dict[key]["min"] = np.min([phenotype[key] for front in pareto_fronts for phenotype in front.values()])
+            min_max_dict[key]["max"] = np.max([phenotype[key] for front in pareto_fronts for phenotype in front.values()])
         return [self._front_sort(front, min_max_dict) for front in pareto_fronts]
