@@ -2,8 +2,6 @@
 This module provides methods to read and write files.
 File formats currently supported: Pickle, JSON.
 """
-
-
 import json
 import os
 import pickle

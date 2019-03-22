@@ -15,12 +15,15 @@ class Initializer:
         """
         pass
 
+    def _initialize_individual(self):
+        return Individual(self._initialize())
+
     def initialize(self):
         """
         Initializes a list of individuals with length self.n_individuals.
         """
         population = {}
         for _ in range(self.n_individuals):
-            indiviual = Individual(self._initialize())
-            population[indiviual.indiviual_id] = indiviual
+            indiviual = self._initialize_individual()
+            population[indiviual.individual_id] = indiviual
         return population

@@ -1,11 +1,14 @@
 """
 This module helps you to recreate the files needed to this project.
 """
-import os
 from io import BytesIO
 from zipfile import ZipFile
+import os
+
 import pandas as pd
 
+from fut_squad_evolver.make_data.make_players import make_base_player_map
+from fut_squad_evolver.utils.read_write import read_file, write_file
 
 def load_dataset_from_kaggle():
     """
@@ -33,5 +36,6 @@ def process_dataset():
         .str.split(" - ").apply(lambda x: len(x) == 2)
     dataset["price"] = dataset["ps4_last"]
     dataset = dataset.set_index("player_id", drop=False)
+    dataset = make_base_player_map(dataset)
     dataset.to_pickle("data/processed/ut_players.p")
     return dataset

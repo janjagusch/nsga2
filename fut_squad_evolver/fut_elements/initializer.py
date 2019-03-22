@@ -40,15 +40,20 @@ class CompatibilityInitializer(SquadInitializer):
         Initializes a single squad.
         """
         slot_map = {}
+        locked_players = {slot_id: self.players.loc[player_id].player for slot_id, player_id in self.locked_players.items()}
+        base_ids = [player.base_id for player in locked_players.values()]
         for slot_id in self.formation.positions.keys():
-            if slot_id in self.locked_players.keys():
-                player = Player._from_pandas(self.players.loc[self.locked_players[slot_id]])
+            if slot_id in locked_players.keys():
+                player = locked_players[slot_id]
                 is_locked = True
             else:
                 position = self.formation.positions[slot_id]
-                player = Player._from_pandas(self.compatible_players[position].sample().iloc[0])
+                compatible_players_position = self.compatible_players[position]
+                # Asserts that no locked base id or already used base id is re-used.
+                player = compatible_players_position[~compatible_players_position["base_id"].isin(base_ids)].sample().iloc[0].player
                 is_locked = False
             slot = Slot(player, is_locked)
             slot_map[slot_id] = slot
+            base_ids.append(player.base_id)
         squad = Squad(slot_map, self.formation)
         return squad
