@@ -4,7 +4,11 @@ from fut_squad_evolver.nsga2.sorter.crowding_distance_sorter import CrowdingDist
 
 class Evaluator:
 
-    def __init__(self, non_dominated_sorter_kwargs, crowding_distance_sorter_kwargs):
+    def __init__(self, non_dominated_sorter_kwargs=None, crowding_distance_sorter_kwargs=None):
+        if non_dominated_sorter_kwargs is None:
+            non_dominated_sorter_kwargs = {}
+        if crowding_distance_sorter_kwargs is None:
+            crowding_distance_sorter_kwargs = {}
         self.non_dominated_sorter = NonDominatedSorter(**non_dominated_sorter_kwargs)
         self.crowding_distance_sorter = CrowdingDistanceSorter(**crowding_distance_sorter_kwargs)
 

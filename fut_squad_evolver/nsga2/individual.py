@@ -25,7 +25,10 @@ class Individual:
             fitness = {}
         self.fitness = fitness
 
+    def evaluate(self):
+        self.phenotype = self.genotype.evaluate()
+
     def __repr__(self):
-        repr = "{}(individual_id={}, genotype={}, phenotype={}, fitness={})".\
-            format(self.__class__.__name__, self.individual_id, self.genotype,
-                   self.phenotype, self.fitness)
+        repr = "{}(individual_id={}, phenotype={}, fitness={})".\
+            format(self.__class__.__name__, self.individual_id, self.phenotype, self.fitness)
+        return repr

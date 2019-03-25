@@ -10,17 +10,6 @@ from fut_squad_evolver.fut_elements.slot import Slot
 
 
 class SquadInitializer(Initializer):
-
-    def __init__(self, n_squads, formation, players, locked_players=None):
-        super().__init__(n_squads)
-        self.formation = formation
-        self.players = players
-        if locked_players is None:
-            locked_players = {}
-        self.locked_players = locked_players
-
-
-class CompatibilityInitializer(SquadInitializer):
     """
     Initializes one or many squads.
     Args:
@@ -31,7 +20,12 @@ class CompatibilityInitializer(SquadInitializer):
     """
 
     def __init__(self, n_squads, formation, players, min_compatibility, locked_players=None):
-        super().__init__(n_squads, formation, players, locked_players)
+        super().__init__(n_squads)
+        self.formation = formation
+        self.players = players
+        if locked_players is None:
+            locked_players = {}
+        self.locked_players = locked_players
         self.min_compatibility = min_compatibility
         self.compatible_players = make_compatible_players(self.players, self.min_compatibility)
 

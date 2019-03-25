@@ -1,4 +1,6 @@
-from fut_squad_evolver.fut_elements.data_loader import POSITIONS
+POSITIONS = ["GK", "CB", "LB", "LWB", "RB", "RWB", "CDM",
+             "CM", "CAM", "CF", "ST", "LM", "LW", "LF", "RM", "RW", "RF"]
+
 
 
 def calculate_chemistry_position(player_pos, squad_pos):
@@ -280,8 +282,6 @@ def calculate_chemistry(link_chemistry, position_chemistry):
             return 9
         if position_chemistry == 3:
             return 10
-    print(link_chemistry)
-    print(position_chemistry)
     raise ValueError
 
 

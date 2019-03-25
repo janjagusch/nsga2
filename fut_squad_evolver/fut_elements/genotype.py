@@ -38,13 +38,11 @@ class Squad(Genotype):
             player = slot.player
             # calculate position chemistry
             player_position = player.position
-            formation_position = self.formation.positions[str(key)]
+            formation_position = self.formation.positions[key]
             position_chemistry = calculate_chemistry_position(
                 player_position, formation_position)
             # calculate linked player chemistry
-            # TODO: make keys of self.formation int
-            print(self.formation)
-            linked_players = [self.slot_map[k].player for k in self.formation.links[str(key)]]
+            linked_players = [self.slot_map[k].player for k in self.formation.links[key]]
             link_sum = np.sum([calculate_inter_player_chemistry(player, other_player) for other_player in linked_players])
             link_chemistry = calculate_individual_chemistry(link_sum, len(linked_players))
             # calculate total chemistry
