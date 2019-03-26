@@ -3,7 +3,7 @@ class Stopper:
     This class stops the genetic optimization process, provided a genetic state.
     """
 
-    def stop(self, state):
+    def stop(self, population):
         """
         Stops the genetic optimization, if the state satisfies a certain
         condition.
@@ -21,23 +21,12 @@ class MaxGenerationStopper(Stopper):
     of generations.
     """
 
-    def __init__(self, max_generations=100):
-        self.max_generations = max_generations
+    def __init__(self, max_generation=100):
+        self.max_generation = max_generation
+        self.current_generation = 0
 
-    def stop(self, state):
-        if state["current_generation"] >= self.max_generations:
+    def stop(self, population):
+        if self.current_generation >= self.max_generation:
             return True
+        self.current_generation += 1
         return False
-
-
-STOPPER_MAP = {
-    "MaxGenerationStopper": MaxGenerationStopper
-}
-
-
-def make_stopper(stopper_id, stopper_kwargs=None):
-    if stopper_kwargs is None:
-        stopper_kwargs = {}
-    if stopper_id not in STOPPER_MAP.keys():
-        raise ValueError
-    return STOPPER_MAP[stopper_id](**stopper_kwargs)

@@ -37,5 +37,5 @@ def process_dataset():
     dataset["price"] = dataset["ps4_last"]
     dataset = dataset.set_index("player_id", drop=False)
     dataset = make_base_player_map(dataset)
-    dataset.to_pickle("data/processed/ut_players.p")
+    dataset.to_pickle("data/processed/players.p")
     return dataset

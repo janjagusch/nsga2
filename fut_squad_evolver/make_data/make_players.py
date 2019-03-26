@@ -21,26 +21,18 @@ def make_base_player_map(players_df):
             player = Player._from_pandas(row)
             player.base = base
             base.players[player_id] = player
-            club = row["club"]
-            league = row["league"]
-            position = row["position"]
-            nationality = row["nationality"]
-            position = row["position"]
-            overall = row["overall"]
-            price = row["price"]
+            # club = row["club"]
+            # league = row["league"]
+            # position = row["position"]
+            # nationality = row["nationality"]
+            # position = row["position"]
+            # overall = row["overall"]
+            # price = row["price"]
+            row_dict = row.to_dict()
+            row_dict["player"] = player
+            row_dict["base"] = base
             base_player_map.append(
-                {
-                    "player_id": player_id,
-                    "base_id": base_id,
-                    "club": club,
-                    "league": league,
-                    "nationality": nationality,
-                    "position": position,
-                    "overall": overall,
-                    "price": price,
-                    "player": player,
-                    "base": base
-                }
+                    row_dict
             )
     base_player_map = pd.DataFrame(base_player_map)
     base_player_map = base_player_map.set_index("player_id", drop=False)

@@ -1,2 +1,2 @@
-- Add individual -> phenotype converter for sorters
-- Adjust inputs for crowding distance sorter
+- Make sure that crossover does not create duplicate base ids.
+- Add deep learning example.

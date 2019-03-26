@@ -41,9 +41,9 @@ class Player:
 
     def __repr__(self):
         repr = "{}(player_id={}, overall={}, club={}, league={}, \
-        nationality={}, position={}, price={}, base_id={})"\
+        nationality={}, position={}, price={}, base={})"\
         .format(self.__class__.__name__, self.player_id, self.overall, self.club, self.league,
-                self.nationality, self.position, self.price, self.base_id)
+                self.nationality, self.position, self.price, self.base)
         return repr
 
     @staticmethod

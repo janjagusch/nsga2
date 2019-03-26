@@ -24,6 +24,7 @@ class SquadCrossover(Crossover):
         slot_map_a = {}
         slot_map_b = {}
         swap_slots = [swap_slot_id] + genotype_a.formation.links[swap_slot_id]
+        # TODO: Make sure not to create duplicates when applying crossover.
         for slot_id in genotype_a.slot_map.keys():
             if slot_id in swap_slots and not genotype_a.slot_map[slot_id].is_locked:
                 slot_map_a[slot_id] = Slot(genotype_b.slot_map[slot_id].player, genotype_b.formation)

@@ -55,3 +55,12 @@ class Squad(Genotype):
     def __repr__(self):
         repr = "{}(slot_map={})".format(self.__class__.__name__, self.slot_map)
         return repr
+
+    def __str__(self):
+        label_map = {key: label for key, label in self.formation.labels.items()}
+        player_map = {key: slot.player for key, slot in self.slot_map.items()}
+        squad_str = ""
+        for slot_id, slot_label in label_map.items():
+            player = player_map[slot_id]
+            squad_str += "{}:\tPlayer(id={}, name={}, club={}, league={}, nationality={}, position={}, overall={}, price={})\n".format(slot_label, player.player_id, player.base.name, player.club, player.league, player.nationality, player.position, player.overall, player.price)
+        return squad_str
