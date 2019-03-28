@@ -5,7 +5,7 @@ from copy import deepcopy
 
 import numpy as np
 
-from fut_squad_evolver.nsga2.individual import Individual
+from nsga2.nsga2.individual import Individual
 
 
 class Crossover:

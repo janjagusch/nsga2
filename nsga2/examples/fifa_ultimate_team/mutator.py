@@ -2,8 +2,8 @@
 This class implements the Mutation operator for the FUT example.
 """
 import numpy as np
-from fut_squad_evolver.fut_elements.calculate_chemistry import make_compatible_players, calculate_chemistry_position
-from fut_squad_evolver.nsga2.mutator import Mutator
+from nsga2.examples.fifa_ultimate_team.calculate_chemistry import make_compatible_players, calculate_chemistry_position
+from nsga2.nsga2.mutator import Mutator
 
 
 class SquadMutator(Mutator):

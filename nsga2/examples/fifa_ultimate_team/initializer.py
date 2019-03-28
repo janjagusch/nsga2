@@ -1,12 +1,12 @@
 """
 This module provides an Initializer class that generates squads.
 """
-from fut_squad_evolver.nsga2.initializer import Initializer
-from fut_squad_evolver.fut_elements.calculate_chemistry import \
+from nsga2.nsga2.initializer import Initializer
+from nsga2.examples.fifa_ultimate_team.calculate_chemistry import \
     make_compatible_players
-from fut_squad_evolver.fut_elements.genotype import Squad
-from fut_squad_evolver.fut_elements.player import Player
-from fut_squad_evolver.fut_elements.slot import Slot
+from nsga2.examples.fifa_ultimate_team.genotype import Squad
+from nsga2.examples.fifa_ultimate_team.player import Player
+from nsga2.examples.fifa_ultimate_team.slot import Slot
 
 
 class SquadInitializer(Initializer):
@@ -29,7 +29,7 @@ class SquadInitializer(Initializer):
         self.min_compatibility = min_compatibility
         self.compatible_players = make_compatible_players(self.players, self.min_compatibility)
 
-    def _initialize(self):
+    def _initialize_genotype(self):
         """
         Initializes a single squad.
         """

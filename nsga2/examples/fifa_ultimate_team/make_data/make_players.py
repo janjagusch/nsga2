@@ -1,10 +1,10 @@
 import pandas as pd
 
-from fut_squad_evolver.fut_elements.player import Player
-from fut_squad_evolver.fut_elements.base import Base
+from player import Player
+from base import Base
 
 
-def make_base_player_map(players_df):
+def make_players(players_df):
     base_map = {}
     player_map = {}
     base_player_map = []

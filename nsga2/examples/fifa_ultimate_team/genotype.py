@@ -3,9 +3,9 @@ This class describes a squad - a team of players.
 """
 import numpy as np
 
-from fut_squad_evolver.fut_elements.calculate_chemistry import calculate_chemistry_position, \
+from nsga2.examples.fifa_ultimate_team.calculate_chemistry import calculate_chemistry_position, \
     calculate_inter_player_chemistry, calculate_individual_chemistry, calculate_chemistry
-from fut_squad_evolver.nsga2.genotype import Genotype
+from nsga2.nsga2.genotype import Genotype
 
 
 class Squad(Genotype):

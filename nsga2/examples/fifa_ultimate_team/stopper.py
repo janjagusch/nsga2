@@ -1,4 +1,4 @@
-from fut_squad_evolver.nsga2.stopper import Stopper
+from nsga2.nsga2.stopper import Stopper
 
 
 class SquadStopper(Stopper):

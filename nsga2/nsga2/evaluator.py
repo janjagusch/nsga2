@@ -1,5 +1,5 @@
-from fut_squad_evolver.nsga2.sorter.non_dominated_sorter import NonDominatedSorter
-from fut_squad_evolver.nsga2.sorter.crowding_distance_sorter import CrowdingDistanceSorter
+from nsga2.nsga2.sorter.non_dominated_sorter import NonDominatedSorter
+from nsga2.nsga2.sorter.crowding_distance_sorter import CrowdingDistanceSorter
 
 
 class Evaluator:
