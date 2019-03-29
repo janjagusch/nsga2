@@ -24,13 +24,15 @@ class NSGA2:
             self.mutator.mutate(individual)
         return next_population
 
-    def search(self):
-        print("Initialize population...")
+    def search(self, verbose=False):
+        if verbose:
+            print("Initialize population...")
         population = self.initializer.initialize()
         self.make_phenotype(population)
         self.evaluator.evaluate(population)
         self.population_log.append(population)
-        print("Run search...")
+        if verbose:
+            print("Run search...")
         interrupt = False
         while not self.stopper.stop(population):
             try:
@@ -41,8 +43,10 @@ class NSGA2:
                 population = next_population
                 self.population_log.append(population)
             except KeyboardInterrupt:
-                print("Search interrupted...")
+                if verbose:
+                    print("Search interrupted...")
                 break
-        print("Terminating search...")
+        if verbose:
+            print("Terminating search...")
         self.population = population
         return population

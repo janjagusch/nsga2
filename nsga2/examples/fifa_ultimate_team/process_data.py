@@ -7,10 +7,11 @@ import os
 
 import pandas as pd
 
-from make_data.make_players import make_players
-from make_data.make_formations import make_formations
+from nsga2.examples.fifa_ultimate_team.make_data.make_players import make_players
+from nsga2.examples.fifa_ultimate_team.make_data.make_formations import make_formations
 
-from read_write import read_file, write_file
+from nsga2.examples.fifa_ultimate_team.read_write import read_file, write_file
+
 
 def load_dataset_from_kaggle():
     """
@@ -30,18 +31,21 @@ def read_dataset_from_zip():
 
 
 def process_formations():
-
+    formations = read_file("nsga2/examples/fifa_ultimate_team/data/raw", "formations.json")
+    formations = make_formations(formations)
+    write_file(formations, "nsga2/examples/fifa_ultimate_team/data/processed", "formations.p")
+    return formations
 
 
 def process_players():
-    dataset = pd.read_pickle(
-        "data/interim/players.p").sort_values(["base_id", "player_id"])
-    dataset["metal"] = dataset["quality"]\
+    players = read_file("nsga2/examples/fifa_ultimate_team/data/interim", "players.p")\
+        .sort_values(["base_id", "player_id"])
+    players["metal"] = players["quality"]\
         .str.split(" - ").apply(lambda x: x[0])
-    dataset["is_rare"] = dataset["quality"]\
+    players["is_rare"] = players["quality"]\
         .str.split(" - ").apply(lambda x: len(x) == 2)
-    dataset["price"] = dataset["ps4_last"]
-    dataset = dataset.set_index("player_id", drop=False)
-    dataset = make_players(dataset)
-    dataset.to_pickle("data/processed/players.p")
-    return dataset
+    players["price"] = players["ps4_last"]
+    players = players.set_index("player_id", drop=False)
+    players = make_players(players)
+    write_file(players, "nsga2/examples/fifa_ultimate_team/data/processed", "players.p")
+    return players

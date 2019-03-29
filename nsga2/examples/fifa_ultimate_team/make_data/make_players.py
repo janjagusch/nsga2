@@ -1,7 +1,7 @@
 import pandas as pd
 
-from player import Player
-from base import Base
+from nsga2.examples.fifa_ultimate_team.player import Player
+from nsga2.examples.fifa_ultimate_team.base import Base
 
 
 def make_players(players_df):
